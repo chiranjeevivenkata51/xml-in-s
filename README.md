@@ -20,3 +20,36 @@ res2: Array[org.apache.spark.sql.Row] = Array([1,25,1,Milind], [2,Testing,2,Rame
 scala> m.foreach(println)
 [1,25,1,Milind]
 [2,Testing,2,Ramesh]
+
+
+m.show()
++---+-------+-------------+------+
+|_id|    age|           id|  name|
++---+-------+-------------+------+
+|  1|     25|    [1,7,sai]|Milind|
+|  2|Testing|[2,null,null]|Ramesh|
++---+-------+-------------+------+
+
+
+scala> val c = sqlContext.sql("select id['_b']from sai").show();
++----+
+| _c0|
++----+
+| sai|
+|null|
++----+
+
+c: Unit = ()
+
+scala> m.printSchema()
+root
+ |-- _id: long (nullable = true)
+ |-- age: string (nullable = true)
+ |-- id: struct (nullable = true)
+ |    |-- _VALUE: long (nullable = true)
+ |    |-- _a: long (nullable = true)
+ |    |-- _b: string (nullable = true)
+ |-- name: string (nullable = true)
+
+
+
